@@ -45,17 +45,17 @@ includedir /etc/krb5.conf.d/
  forwardable = true
  rdns = false
  pkinit_anchors = FILE:/etc/pki/tls/certs/ca-bundle.crt
- default_realm = AD-AUTH.LIFE.COM.BR
+ default_realm = ${domain_caps}
  default_ccache_name = KEYRING:persistent:%{uid}
 
 [realms]
- AD-AUTH.LIFE.COM.BR = {
-  kdc = ad-auth.life.com.br
+ ${domain_caps} = {
+  kdc = ${domain}
   admin_server = kerberos.example.com
  }
 
 [domain_realm]
- .ad-auth.life.com.br = AD-AUTH.LIFE.COM.BR
+ .${domain} = ${domain_caps}
 EOL
 
 
