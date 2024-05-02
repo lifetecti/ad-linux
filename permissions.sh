@@ -5,7 +5,7 @@ if [ "$EUID" -ne 0 ]
 	then echo "Por favor rodar como root"
 	exit
 fi
-#read -p "Digite o domínio que a máquina está inserida: " domain
+read -p "Digite o nome da empresa(minusculo): " empresa
 
 echo "Fazendo backup do arquivo de sudoers..."
 
@@ -23,13 +23,10 @@ Cmnd_Alias VIEW_IPTABLES= /usr/sbin/iptables -L, /usr/sbin/iptables -nL
 Cmnd_Alias ASTERISK = /usr/sbin/asterisk, /usr/sbin/rasterisk
 
 #Grupos definidos no AD
-#%life_administradores@${domain}    ALL=(ALL) ALL, NOROOT
-#%life_operador@${domain}	    ALL=(ALL) ALL, NOROOT, !/sbin/shutdown, !/sbin/reboot, !/usr/bin/rm
-#%life_viewer@${domain}		    ALL=(ALL) /usr/bin/cat, VIEW_IPTABLES, ASTERISK
 
-%life_administradores	    ALL=(ALL) ALL, NOROOT
-%life_operador  	    ALL=(ALL) ALL, NOROOT, !/sbin/shutdown, !/sbin/reboot, !/usr/bin/rm
-%life_viewer		    ALL=(ALL) /usr/bin/cat, VIEW_IPTABLES, ASTERISK
+%${empresa}_administradores	    ALL=(ALL) ALL, NOROOT
+%${empresa}_operador  	    ALL=(ALL) ALL, NOROOT, !/sbin/shutdown, !/sbin/reboot, !/usr/bin/rm
+%${empresa}_viewer		    ALL=(ALL) /usr/bin/cat, VIEW_IPTABLES, ASTERISK
 
 EOF
 
